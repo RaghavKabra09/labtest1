@@ -1,0 +1,37 @@
+#ques 1 and 2
+import numpy as np
+
+
+Patient_list = np.array([
+    [1, 101, 'avh','Dr. shu','heart pain', 'heart attack', 'Room 101', 500.0],
+    [2, 102, 'dbdx','dr. udn','tooth ache','cavity', 'Room 102', 1500.0],
+    [3, 103, 'djnc','dr.ben' ,'accident' ,'fracture in right shoulder', 'Room 103', 700.0],
+    [4, 104, 'asn','no doctor', 'medicine', 'sick', 'Room 104', 300.0]
+], dtype=object)
+
+Doctor_list = np.array([
+    [101, 'Dr. shu', 'Cardiology'],
+    [102, 'Dr. udn', 'dentist'],
+    [103, 'Dr. Ben', 'Orthopedics']
+], dtype=object)
+print (Patient_list)
+print (Doctor_list)
+#ques 3
+def patient_doc(doctor_id):
+    patients = Patient_list[Patient_list[:, 1]] == doctor_id[Doctor_list]
+    return patients
+
+print(patient_doc(101))
+#ques 6
+def max_min_bill():
+    bills = Patient_list[:, 4].astype(float)
+    max_bill = np.max(bills)
+    min_bill = np.min(bills)
+    max_bill_patients = Patient_list[bills == max_bill]
+    min_bill_patients = Patient_list[bills == min_bill]
+    return max_bill_patients, min_bill_patients
+
+max_bill_patients, min_bill_patients = max_min_bill()
+print("Patients with maximum bill:", max_bill_patients)
+print("Patients with minimum bill:", min_bill_patients)
+
